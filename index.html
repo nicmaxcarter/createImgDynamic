@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic </title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="main">
+
+
+
+    </div>
+    <h1>Service Images</h1>
+
+
+
+
+    <script>
+        window.onload = function () {
+            var dir = "https://wd.eleadcrm.com/evo2/companies/FLNADAMAR/Images/DiscoveryEmail/";
+            var fileExtension = ".jpg";
+            $.ajax({
+                //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+                url: dir,
+                success: function (data) {
+                    //List all .jpg file names in the page
+                    $(data).find("a:contains(" + fileextension + ")").each(function () {
+                        var filename = this.href.replace(window.location.host, "").replace("http://", "");
+                        $("body").append("<img src='" + dir + filename + "'>");
+                    });
+                }
+            });
+        };
+
+        function myFunction() {
+            console.log("log from button");
+        }
+    </script>
+
+
+    <!-- <script src="Imgelement.js"></script>
+    <script src="onload.js"></script> -->
+</body>
+
+</html>
